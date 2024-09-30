@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dispositivos</title>
+        <style>
+            .device-list {
+                display: flex;
+                overflow-x: auto;
+            }
+            .device-item {
+                margin-right: 20px;
+                cursor: pointer;
+            }
+            .photo-list {
+                margin-top: 20px;
+            }
+        </style>
+        <script>
+            function loadPhotos(deviceId) {
+                window.location.href = `?device_id=${deviceId}`;
+            }
+        </script>
+    </head>
+    <body>
+        <div class="device-list">
+            {% for device in devices %}
+                <button class="device-item" onclick="loadPhotos({{ device.id }})">
+                    <p>{{ device.name }}</p>
+                    <p>{{ device.mac_address }}</p>
+                </button>
+            {% endfor %}
+        </div>
+
+        {% if photos %}
+            <div class="photo-list">
+                <h2>Fotos do Dispositivo: {{ device.mac_address }}</h2>
+                {% for photo in photos %}
+                    <div>
+                        <p>Data e Hora: {{ photo.data }}</p>
+                        <p>Temperatura: {{ photo.temperature }}°C</p>
+                        <p>Pressão: {{ photo.pressure }} Pa</p>
+                        <p>Altitude: {{ photo.altitude }} m</p>
+                        <img src="{{ photo.image_link}}?{{SasTokien}}" alt="img" style="width: 600px;">
+                        <a href="{{ photo.image_link }}?{{SasTokien}}" download>Download</a>
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </body>
+</html>
