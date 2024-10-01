@@ -9,8 +9,6 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Em resumo, você verá os outputs do Python em tempo real.
 ENV PYTHONUNBUFFERED 1
 
-
-
 COPY project /project
 COPY scripts /scripts
 

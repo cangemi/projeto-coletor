@@ -1,8 +1,9 @@
-
+version: '3.9'
 
 services:
   project:
     container_name: api
+    image: cangemi/projeto-coletor:latest
     build:
       context: .
     ports:
